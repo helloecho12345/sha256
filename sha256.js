@@ -1,3 +1,4 @@
+// imported the crypto-js JavaScript library and used its crypto-js/sha256 module to calculate the hash of each block. Since the module returns a number object, I used the toString() method to convert it into a string.
 const SHA256 = require('crypto-js/sha256');
 class CryptoBlock{
     constructor(index, timestamp, data, precedingHash=" "){
@@ -7,6 +8,7 @@ class CryptoBlock{
      this.precedingHash = precedingHash;   // precedingHash points to the hash of the preceding block in the blockchain, something important in maintaining the blockchain’s integrity.
      this.hash = this.computeHash();     
     }
+    // computeHash method to calculate the hash of the block based on its properties, as given in the data above
     computeHash(){
         return SHA256(this.index + this.precedingHash + this.timestamp + JSON.stringify(this.data)).toString();
     }   
